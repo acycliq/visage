@@ -34,10 +34,10 @@ function add_spots_patched(all_geneData, map) {
     };
 
     function scaleRamp(z) {
-        var scale = 1 / 8;
-        return z === 0 ? scaleRampHelper(z, 0.25 * scale) :
-                z === 1 ? scaleRampHelper(z, 0.5 * scale) :
-                    z === 2 ? scaleRampHelper(z, 0.5 * scale) : scaleRampHelper(z, scale)
+        var scale = 1 / 64;
+        return z === 0 ? scaleRampHelper(z, scale) :
+                z === 1 ? scaleRampHelper(z,  2 * scale) :
+                    z === 2 ? scaleRampHelper(z,  2 * scale) : scaleRampHelper(z, 4 * scale)
 
         // return z === 0 ? 0.03 * 2**3 :
         //     z === 1 ? 0.03 * 2**3 :
