@@ -98,7 +98,7 @@ function legendControl() {
         legendLink.addEventListener(`click`, () => {
             // Opens the page and stores the opened window instance
             legendWindow = window.open(`./dashboard/genes_datatable.html`); // <--- THAT NEEDS TO BE EXPOSED TO THE USER. MOVE I INSIDE config.js MAYBE
-            // legendWindow = window.open('./dashboard/genes_datatable.html', '_blank','toolbar=yes');
+            // legendWindow = window.open('./viewer/genes_datatable.html', '_blank','toolbar=yes');
 
         });
     }
