@@ -29,7 +29,7 @@ function myUtils() {
                 };
             }
 
-            var target_cell = get_cell(+data[i].cell_id, i);
+            var target_cell = get_cell(+data[i].label, i);
             //create feature properties
             var p = {
                 // "fov": getFov(+target_cell.X, +target_cell.Y), // <-- Do not use that if you can. Browser will load a bit faster if removed
