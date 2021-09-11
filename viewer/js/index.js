@@ -159,7 +159,7 @@ function run() {
     console.log('app starts');
     configSettings = config();
 
-    fetcher([configSettings.cellData, configSettings.geneData, configSettings.cellBoundaries]).then(
+    fetcher([encode(configSettings.cellData), encode(configSettings.geneData), encode(configSettings.cellBoundaries)]).then(
         result => make_package(result),
         error => alert(error) // doesn't run
     );
@@ -173,7 +173,7 @@ const fetcher = (filenames) => {
 
 function make_package(result) {
     var workPackage = result.reduce((a, b) => a.concat(b), []);
-    workPackage.forEach(d => d.root_name = d.name.split('_')[0]);
+    workPackage.forEach(d => d.root_name = strip_url(d.name));
     workPackage.forEach(d => d.bytes_streamed = 0); //will keep how many bytes have been streamed
     workPackage.forEach(d => d.data = []);          //will keep the actual data from the flatfiles
     workPackage.forEach(d => d.data_length = 0);    //will keep the number of points that have been fetched
@@ -184,31 +184,29 @@ function make_package(result) {
     console.log(result)
 }
 
-// function onCellsLoaded(cfg) {
-//     var data_1 = [],
-//         // all_geneData = [],
-//         data_3 = [];
-//     return (err, ...args) => {
-//         console.log('loading data')
-//         args.forEach((d, i) => {
-//             i === 0 ? data_1 = d : // the cell boundaries are in position 0 of the args array
-//                 i % 2 === 0 ? data_3 = [...data_3, ...d] : // even positions in the args array hold the cell data
-//                     all_geneData = [...all_geneData, ...d] // odd positions in the args array hold the gene data
-//         });
-//         [cellBoundaries, cellData] = postLoad([data_1, data_3]);
-//         console.log('loading data finished');
-//         console.log('num of genes loaded: ' + all_geneData.length);
-//         console.log('num of cells loaded: ' + cellData.length);
-//
-//
-//         //finaly make a spatial index on the spots. We will need that to filter them if/when needed
-//         console.log('Creating the index');
-//         spotsIndex = new KDBush(all_geneData, p => p.x, p => p.y, 64, Int32Array);
-//
-//         // do now the chart
-//         dapiChart(cfg);
-//     }
-// }
+function strip_url(d) {
+    // if the url has / get the last substring
+    fName = d.substring(d.lastIndexOf('/')+1);
+
+    // then strip the extension and return the value
+    return fName.split('.')[0]
+}
+
+function encode(url) {
+    // In google cloud storage, the object must be encoded. That means / must be replaced gy %2F
+    console.log('Encoding the object path of the google cloud storage url')
+    if (url.startsWith('https://www.googleapis.com/storage')){
+        // Split the path
+        [root, fName] = url.split('/o/')
+
+        // encode and return
+        return root + '/o/' + encodeURIComponent(fName)
+    }
+    else {
+        return url
+    }
+
+}
 
 function postLoad(arr) {
     //Do some basic post-processing/cleaning
