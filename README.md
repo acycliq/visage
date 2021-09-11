@@ -10,7 +10,7 @@ You can use your own data, cell typed or not; Please read below for more details
 ## Instructions
 Download/clone the master branch from this repo. All the necessary code will be under the `\viewer\js\` directory. 
 No extra installations are needed to run the viewer (apart from maybe Python solely for the purpose of running a webserver. 
-However, you will need Python if you want to pass your own data). You can also use `github-pages` to host the website and make your findings
+However, you will need Python if you want to pass your own data). You can also use `github-pages` to host the website and demo your findings
 available to a wider audience.
 
 As a sanity check your local copy of the code should run fine if you open `index.html` that you will 
@@ -22,6 +22,13 @@ Then there are three main steps:
  * Save you data in the correct form so they can be digested by the viewer
  * Set the color scheme of your choice for the genes and cells
  
- ### Background image
+### Background image
+As a backgound, in most cases will be a showing a dapi stain. We should have the original image as a tif, jpg, png etc format which will 
+be processed to produce a nested directory tree of thousands of small 256px-by-256px jpg files called `map tiles`. At any given zoom level the viewer
+fetches the necessary tiles and aligns on the screen making a mosaic that looks to the user a big single image when in reality it is a collation of small    
+ 
+### Viewer data
+  
+### Color schemes
  
 
