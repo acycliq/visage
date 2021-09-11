@@ -1,6 +1,6 @@
 # pciSeq viewer
 An interactive web-based viewer to visualise 2D spatial transcriptomics data. A demo using 
-CA1 data from in [Qian, X., et al. Nature Methods (2020)](https://www.nature.com/articles/s41592-019-0631-4) runs
+CA1 data from [Qian, X., et al. Nature Methods (2020)](https://www.nature.com/articles/s41592-019-0631-4) runs
  [here](https://acycliq.github.io/ca1/)
 
 <img src="viewer/assets/screenshot.jpg" alt="Your image title"/>
@@ -13,8 +13,9 @@ As a sanity check your local copy of the code should run fine if you open `index
 find under the root folder. Note that will need to serve the root directory (hence the need for Python) 
 but most modern IDEs will do that automatically behind the scenes    
 
-Then there are two main steps:
- Prepare the background image
- Save you data in the correct form so they can be digested by the viewer
-
+Then there are three main steps:
+ * Prepare the background image
+ * Save you data in the correct form so they can be digested by the viewer
+ * Set the color scheme of your choice for the genes and cells
+ 
 
