@@ -23,12 +23,14 @@ Then there are three main steps:
  * Set the color scheme of your choice for the genes and cells
  
 ### Background image
-As a backgound, in most cases will be a showing a dapi stain. We should have the original image as a tif, jpg, png etc format which will 
+As a backgound, in most cases will be a showing a dapi stain. We should have the original image in a tif, jpg, png etc format which will 
 be processed to produce a nested directory tree of thousands of small 256px-by-256px jpg files called `map tiles`. At any given zoom level 
-the viewer (or to be precise, [leaflet.js](www.leaflet.js)) fetches the necessary tiles and aligns on the screen making a mosaic that looks 
-to the user a big single image when in reality it is a collation of small. 
-Read [here](https://en.wikipedia.org/wiki/Tiled_web_map) and [here](https://docs.microsoft.com/en-us/azure/azure-maps/zoom-levels-and-tile-grid?tabs=csharp)
+the viewer (or to be precise, [leaflet.js](www.leaflet.js)) fetches the necessary tiles and aligns them on the screen making a mosaic that looks 
+to the user as a big single image when in reality it is a collation of small ones. 
+Read [here](https://en.wikipedia.org/wiki/Tiled_web_map), [here](https://docs.microsoft.com/en-us/azure/azure-maps/zoom-levels-and-tile-grid?tabs=csharp) and
 [here](https://www.e-education.psu.edu/geog585/node/706) for more details on tiled maps
+
+Get the `tile_maker` function from the [stage_image](https://github.com/acycliq/pciSeq/blob/master/pciSeq/src/viewer/stage_image.py) module
 ### Viewer data
   
 ### Color schemes
