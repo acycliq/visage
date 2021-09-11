@@ -30,7 +30,10 @@ to the user as a big single image when in reality it is a collation of small one
 Read [here](https://en.wikipedia.org/wiki/Tiled_web_map), [here](https://docs.microsoft.com/en-us/azure/azure-maps/zoom-levels-and-tile-grid?tabs=csharp) and
 [here](https://www.e-education.psu.edu/geog585/node/706) for more details on tiled maps
 
-Get the `tile_maker` function from the [stage_image](https://github.com/acycliq/pciSeq/blob/master/pciSeq/src/viewer/stage_image.py) module
+Get the `tile_maker` function from the [stage_image](https://github.com/acycliq/pciSeq/blob/master/pciSeq/src/viewer/stage_image.py) module in the pciSeq repo.
+Set the `z-depth` parameter to `10` despite the fact that in several cases this will be an overkill. Ten zoom levels will be needed for very big images, like 
+full coronal slices, otherwise eight levels will be fine. However setting `z-depth = 10` will simplify the process of adopting the code and use it with your 
+own data especially if you do this for the first time. 
 ### Viewer data
   
 ### Color schemes
