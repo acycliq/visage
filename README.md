@@ -1,7 +1,7 @@
 # pciSeq viewer
 An interactive web-based viewer to visualise 2D spatial transcriptomics data. A demo using 
 CA1 data from in [[Qian, X., et al. Nature Methods (2020)]](https://www.nature.com/articles/s41592-019-0631-4) runs
- [here][(https://acycliq.github.io/ca1/)]
+ [[here]](https://acycliq.github.io/ca1/)
 
 You can use your own data (cell typed or not) with the viewer; Please read below for more details
 <img src="viewer/assets/screenshot.jpg" alt="Your image title"/>
