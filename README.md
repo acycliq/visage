@@ -66,8 +66,10 @@ The polygon should be a closed one, ie the first and the last pair of coordinate
 ##### 3.2. Cell-type info unavailable
 Suppose now that your data havent been processed by a cell calling algorithm hence the spot-to-cell and cell-to-cell type probabilities are missing. 
 Everything else however like cell centroids, cell boundaries, spot coordinates etc are known. In this case, the cellBoundaries.tsv file is exactly the same 
-as previously
+as previously. The schem for both geneData.tsv and cellData.tsv will not change, however some of the columns will be to filled in a manner that reflects the 
+missing info and allows the data to flow unobstructed through the javascript code. 
 
+For cellData.tsv
 Cell_Num: The id of the cell (It matches the cell_id from the cellBoundaries.tsv)
 X: This will be the x-coord of the cell centroid. It is currently set to 0 as a dummy value
 Y: This will be the y-coord of the cell centroid. It is currently set to 0 as a dummy value
@@ -76,10 +78,7 @@ CellGeneCount: The total number of spots (dots) assigned to the cell. Leave that
 ClassName: The will be a list of the most probable cell types (aka class name) of the cell. Leave that as a single element list [‘Generic’]
 Prob: The probabilities of each cell type. Leave that as a single element list [1.0]
  
-
-The geneData
-
-File geneData.tsv has now the following columns
+For geneData.tsv has now the following columns
 
 Gene. The gene name, the label of the the spot
 X. the x-coord of the spot
