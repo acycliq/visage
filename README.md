@@ -8,7 +8,7 @@ CA1 data from [Qian, X., et al. Nature Methods (2020)](https://www.nature.com/ar
 ## Instructions
 You can feed your own data, cell typed or not; Please read below for more details
 
-#### Intro
+#### 1. Intro
 Download/clone the master branch from this repo. All the necessary code will be under the `\viewer\js\` directory. 
 No extra installations are needed to run the viewer (apart from maybe Python solely for the purpose of running a webserver. 
 However, you will need Python if you want to pass your own data). You can also use `github-pages` to host the website and demo your findings
@@ -23,7 +23,7 @@ Then there are three main steps:
  * Save you data in the correct form so they can be digested by the viewer
  * Set the color scheme of your choice for the genes and cells
  
-#### Background image
+#### 2. Background image
 As a backgound, in most cases we will be a showing a dapi stain. We should have the original image in a tif, jpg, png etc format which will 
 be processed to produce a nested directory tree of thousands of small 256px-by-256px jpg files called `map tiles`. At any given zoom level 
 the viewer (or to be precise, [leaflet.js](www.leaflet.js)) fetches the necessary tiles and aligns them on the screen making a mosaic that looks 
@@ -47,16 +47,18 @@ For `z_value = 10` as recommended, this operation on my Intel i7 Windows 10 PC t
 Note that you have to install [pyvips](https://anaconda.org/conda-forge/pyvips). If you are a windows user you will also need 
 to install the [libvips binary](https://libvips.github.io/libvips/install.html) and put in in your `PATH`
 
-#### Viewer flat files
+#### 3. Viewer flat files
 The following three tsv files are needed:
 * cellData.tsv
 * geneData.tsv
-* cellBOundaries.tsv
+* cellBoundaries.tsv
 
 The scheme (ie columns) for `cellData.tsv` and `geneData.tsv` is the same as their counterpart dataframes explained in section 3 of this 
 [notebook](https://colab.research.google.com/github/acycliq/pciSeq/blob/master/notebooks/pciSeq.ipynb) from the pciSeq repo. 
-The `cellBoundaries.tsv` should have two columns: `cell_id` and	`coords`. The `cell_id` is the same as the `Cell_Num` column from `cellData.tsv`
+The `cellBoundaries.tsv` should have two columns: `cell_id` and	`coords`. The `cell_id` is the same as the `Cell_Num` column from `cellData.tsv` 
+and `coords` describes the boundaries and is a list of lists. Each sublist has the x, y coords of the points defining the polygon of the outer ring.
+The polygon should be a closed polygon, ie the first and the last pair of coordinates should be the same
   
-#### Color schemes
+#### 4. Color schemes
  
 
