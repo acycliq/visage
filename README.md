@@ -66,17 +66,19 @@ The polygon should be a closed one, ie the first and the last pair of coordinate
 ##### 3.2. Cell-type info unavailable
 Suppose now that your data havent been processed by a cell calling algorithm hence the spot-to-cell and cell-to-cell type probabilities are missing. 
 Everything else however like cell centroids, cell boundaries, spot coordinates etc are known. In this case, the `cellBoundaries.tsv` file is exactly the same 
-as previously. The schem for both geneData.tsv and cellData.tsv will not change, however some of the columns will be to filled in a manner that reflects the 
+as previously. The schema for both `geneData.tsv` and `cellData.tsv` will not change, some of the columns however will be filled in a manner that reflects the 
 missing info and allows the data to flow unobstructed through the javascript code. 
 
 For `cellData.tsv`
 * `Cell_Num`: The id of the cell (It matches the cell_id from the cellBoundaries.tsv)
 * `X`: This will be the x-coord of the cell centroid. 
 * `Y`: This will be the y-coord of the cell centroid.
-* `Genenames`: This will be a list of the genes assigned to the cell. Leave that as an empty list
-* `CellGeneCount`: The total number of spots (dots) assigned to the cell. Leave that as an empty list
-* `ClassName`: The will be a list of the most probable cell types (aka class name) of the cell. Leave that as a single element list [‘Generic’]
-* `Prob`: The probabilities of each cell type. Leave that as a single element list [1.0]
+```diff
+* - `Genenames`: This will be a list of the genes assigned to the cell. Leave that as an empty list
+* - `CellGeneCount`: The total number of spots (dots) assigned to the cell. Leave that as an empty list
+* - `ClassName`: The will be a list of the most probable cell types (aka class name) of the cell. Leave that as a single element list [‘Generic’]
+* - `Prob`: The probabilities of each cell type. Leave that as a single element list [1.0]
+```
  
 For `geneData.tsv`
 * `Gene`. The gene name, the label of the the spot
@@ -85,7 +87,7 @@ For `geneData.tsv`
 * `Gene_id`: Self explanatory
 * `neighbour`: The cell_id of the cell that the spot will be assigned to with the highest prob. It is currently set to the dummy value of 0
 * `neighbour_array`: A list of the cell_ids of the 4 closest to the spot cells. It is currently set to the dummy list [0]
-* `neighbour_prob`: A list of the corresponding probabilities It expresses the prob that the cell will be “given” the particular spot. It is currently set to the dummy list [1.0]
+* `neighbour_prob`: A list of the corresponding probabilities It expresses the prob that the cell will be “given” the particular spot. Set this to the list [1.0]
 
 
 #### 4. Color schemes
