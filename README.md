@@ -80,18 +80,20 @@ For `cellData.tsv`
 
  
 For `geneData.tsv`
-* `Gene`. The gene name, the label of the the spot
-* `x`. the x-coord of the spot
-* `y`: the y-coord of the spot
-* `Gene_id`: Self explanatory
-* `neighbour`: The cell_id of the cell that the spot will be assigned to with the highest prob. It is currently set to the dummy value of 0
-* `neighbour_array`: A list of the cell_ids of the 4 closest to the spot cells. It is currently set to the dummy list [0]
-* `neighbour_prob`: A list of the corresponding probabilities It expresses the prob that the cell will be “given” the particular spot. Set this to the list [1.0]
+`Gene`. The gene name, the label of the the spot  
+`x`. the x-coord of the spot  
+`y`: the y-coord of the spot  
+`Gene_id`: Self explanatory  
+`neighbour`: The cell_id of the cell that the spot will be assigned to with the highest prob. It is currently set to the dummy value of 0  
+`neighbour_array`: A list of the cell_ids of the 4 closest to the spot cells. It is currently set to the dummy list [0]  
+`neighbour_prob`: A list of the corresponding probabilities It expresses the prob that the cell will be “given” the particular spot. Set this to the list [1.0]  
 
 
 #### 4. Color schemes
 
-* One ```diff - text in red
+* One 
+```diff 
+- *text in red
 + text in green
 ! text in orange
 # text in gray
