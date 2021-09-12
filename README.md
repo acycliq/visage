@@ -6,7 +6,7 @@ CA1 data from [Qian, X., et al. Nature Methods (2020)](https://www.nature.com/ar
 <img src="viewer/assets/screenshot.jpg" alt="Your image title"/>
 
 ## Instructions
-You can use your own data, cell typed or not; Please read below for more details
+You can feed your own data, cell typed or not; Please read below for more details
 
 #### Intro
 Download/clone the master branch from this repo. All the necessary code will be under the `\viewer\js\` directory. 
@@ -33,7 +33,7 @@ Read [here](https://en.wikipedia.org/wiki/Tiled_web_map), [here](https://docs.mi
 
 Get the `tile_maker` function from the [stage_image](https://github.com/acycliq/pciSeq/blob/master/pciSeq/src/viewer/stage_image.py) module in the 
 [pciSeq repo](https://github.com/acycliq/pciSeq). Set the `z-depth` parameter to `10` despite the fact that in several cases this will be an overkill. Ten zoom levels will be needed for very big images, like 
-full coronal slices, otherwise eight levels will be fine. However setting `z-depth = 10` will simplify the process of adopting the code and use it with your 
+full coronal slices, otherwise eight levels, or even six, will be fine. However setting `z-depth = 10` will simplify the process of adopting the code and use it with your 
 own data especially if you do this for the first time. 
 The rest of the arguments are self-explanatory. A typical example will look like:
 
