@@ -47,7 +47,15 @@ For `z_value = 10` as recommended, this operation on my Intel i7 Windows 10 PC t
 Note that you have to install [pyvips](https://anaconda.org/conda-forge/pyvips). If you are a windows user you will also need 
 to install the [libvips binary](https://libvips.github.io/libvips/install.html) and put in in your `PATH`
 
-#### Viewer data
+#### Viewer flat files
+The following three tsv files are needed:
+* cellData.tsv
+* geneData.tsv
+* cellBOundaries.tsv
+
+The scheme (ie columns) for `cellData.tsv` and `geneData.tsv` is the same as their counterpart dataframes explained in section 3 of this 
+[notebook](https://colab.research.google.com/github/acycliq/pciSeq/blob/master/notebooks/pciSeq.ipynb) from the pciSeq repo. 
+The `cellBoundaries.tsv` should have two columns: `cell_id` and	`coords`. The `cell_id` is the same as the `Cell_Num` column from `cellData.tsv`
   
 #### Color schemes
  
