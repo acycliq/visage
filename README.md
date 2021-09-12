@@ -32,7 +32,7 @@ Read [here](https://en.wikipedia.org/wiki/Tiled_web_map), [here](https://docs.mi
 [here](https://www.e-education.psu.edu/geog585/node/706) for more details on tiled maps
 
 Get the `tile_maker` function from the [stage_image](https://github.com/acycliq/pciSeq/blob/master/pciSeq/src/viewer/stage_image.py) module in the 
-[pciSeq repo](https://github.com/acycliq/pciSeq). Set the `z-depth` parameter to `10` despite the fact that in several cases this will be an overkill. Ten zoom levels will be needed for very big images, like 
+[pciSeq](https://github.com/acycliq/pciSeq) repo. Set the `z-depth` parameter to `10` despite the fact that in several cases this will be an overkill. Ten zoom levels will be needed for very big images, like 
 full coronal slices, otherwise eight levels, or even six, will be fine. However setting `z-depth = 10` will simplify the process of adopting the code and use it with your 
 own data especially if you do this for the first time. 
 The rest of the arguments are self-explanatory. A typical example will look like:
@@ -43,8 +43,8 @@ import pyvips
 tile_maker(z_value, path\to\target\dir, path\to\dapi_image.tif)
 ```
 
-If you have set `z_value = 10` as recommended, this operation on my Intel i7 Windows 10 PC takes about 1h:15mins to complete
-Note that you will have to install [pyvips](https://anaconda.org/conda-forge/pyvips). If you are a windows user you will also need 
+For `z_value = 10` as recommended, this operation on my Intel i7 Windows 10 PC takes about 1h:15mins to complete
+Note that you have to install [pyvips](https://anaconda.org/conda-forge/pyvips). If you are a windows user you will also need 
 to install the [libvips binary](https://libvips.github.io/libvips/install.html) and put in in your `PATH`
 
 #### Viewer data
