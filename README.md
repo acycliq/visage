@@ -88,6 +88,36 @@ For `geneData.tsv`
 * `neighbour_array`: A list of the cell_ids of the 4 closest to the spot cells. It is currently set to the dummy list `[0]`
 * `neighbour_prob`: A list of the corresponding probabilities It expresses the prob that the cell will be “given” the particular spot. Set this to the list `[1.0]`
 
+
+##### 3.2. Cell-type info and cell bouundaries unavailable. 
+Lets now assume that you have the bare minimum; Only the spot coords are known (together with their gene names) and you do not have cell type info and the 
+cell boundaries. You only want to plot the spots on the dapi background.
+
+For `cellBoundaries.tsv`
+Make a minimal tsv as folows:
+* `cell_id`: Set this to `1`
+* `coords`: Set this to the list `[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]`
+
+For `cellData.tsv`
+* `Cell_Num`: Set this to `1`
+* `X`: Set this to the list `0`. 
+* `Y`: Set this to the list `0`. 
+* `Genenames`: Leave that as an empty list
+* `CellGeneCount`: Leave that as an empty list
+* `ClassName`: Leave that as a single element list `[‘Generic’]`
+* `Prob`: Leave that as a single element list `[1.0]`
+
+ 
+For `geneData.tsv`
+*`Gene`. The gene name, the label of the the spot
+* `x`. the x-coord of the spot
+* `y`: the y-coord of the spot
+* `Gene_id`: Self explanatory
+* `neighbour`: Set to the dummy value of `0`
+* `neighbour_array`: Set to the dummy list `[0]`
+* `neighbour_prob`: Set this to the list `[1.0]`
+
+
 #### 3. Storing the data
 
 
