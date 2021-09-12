@@ -71,8 +71,8 @@ missing info and allows the data to flow unobstructed through the javascript cod
 
 For `cellData.tsv`
 * `Cell_Num`: The id of the cell (It matches the cell_id from the cellBoundaries.tsv)
-* `X`: This will be the x-coord of the cell centroid. It is currently set to 0 as a dummy value
-* `Y`: This will be the y-coord of the cell centroid. It is currently set to 0 as a dummy value
+* `X`: This will be the x-coord of the cell centroid. 
+* `Y`: This will be the y-coord of the cell centroid.
 * `Genenames`: This will be a list of the genes assigned to the cell. Leave that as an empty list
 * `CellGeneCount`: The total number of spots (dots) assigned to the cell. Leave that as an empty list
 * `ClassName`: The will be a list of the most probable cell types (aka class name) of the cell. Leave that as a single element list [‘Generic’]
