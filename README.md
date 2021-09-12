@@ -94,11 +94,11 @@ Lets now assume that you have the bare minimum; Only the spot coords are known (
 cell boundaries. You only want to plot the spots on the dapi background.
 
 For `cellBoundaries.tsv`
-Make a minimal tsv as folows:
+Make a minimal tsv with only on entry as follows:
 * `cell_id`: Set this to `1`
 * `coords`: Set this to the list `[[0, 0], [1, 0], [1, 1], [0, 1], [0, 0]]`
 
-For `cellData.tsv`
+For `cellData.tsv`. This will also have one entry too:
 * `Cell_Num`: Set this to `1`
 * `X`: Set this to the list `0`. 
 * `Y`: Set this to the list `0`. 
