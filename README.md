@@ -70,23 +70,23 @@ as previously. The schem for both geneData.tsv and cellData.tsv will not change,
 missing info and allows the data to flow unobstructed through the javascript code. 
 
 For cellData.tsv
-Cell_Num: The id of the cell (It matches the cell_id from the cellBoundaries.tsv)
-X: This will be the x-coord of the cell centroid. It is currently set to 0 as a dummy value
-Y: This will be the y-coord of the cell centroid. It is currently set to 0 as a dummy value
-Genenames: This will be a list of the genes assigned to the cell. Leave that as an empty list
-CellGeneCount: The total number of spots (dots) assigned to the cell. Leave that as an empty list
-ClassName: The will be a list of the most probable cell types (aka class name) of the cell. Leave that as a single element list [‘Generic’]
-Prob: The probabilities of each cell type. Leave that as a single element list [1.0]
+* Cell_Num: The id of the cell (It matches the cell_id from the cellBoundaries.tsv)
+* X: This will be the x-coord of the cell centroid. It is currently set to 0 as a dummy value
+* Y: This will be the y-coord of the cell centroid. It is currently set to 0 as a dummy value
+* Genenames: This will be a list of the genes assigned to the cell. Leave that as an empty list
+* CellGeneCount: The total number of spots (dots) assigned to the cell. Leave that as an empty list
+* ClassName: The will be a list of the most probable cell types (aka class name) of the cell. Leave that as a single element list [‘Generic’]
+* Prob: The probabilities of each cell type. Leave that as a single element list [1.0]
  
 For geneData.tsv has now the following columns
 
-Gene. The gene name, the label of the the spot
-X. the x-coord of the spot
-Y: the y-coord of the spot
-Gene_id: Self explanatory
-neighbour: The cell_id of the cell that the spot will be assigned to with the highest prob. It is currently set to the dummy value of 0
-neighbour_array: A list of the cell_ids of the 4 closest to the spot cells. It is currently set to the dummy list [0]
-neighbour_prob: A list of the corresponding probabilities It expresses the prob that the cell will be “given” the particular spot. It is currently set to the dummy list [1.0]
+* Gene. The gene name, the label of the the spot
+* x. the x-coord of the spot
+* y: the y-coord of the spot
+* Gene_id: Self explanatory
+* neighbour: The cell_id of the cell that the spot will be assigned to with the highest prob. It is currently set to the dummy value of 0
+* neighbour_array: A list of the cell_ids of the 4 closest to the spot cells. It is currently set to the dummy list [0]
+* neighbour_prob: A list of the corresponding probabilities It expresses the prob that the cell will be “given” the particular spot. It is currently set to the dummy list [1.0]
 
 
 #### 4. Color schemes
