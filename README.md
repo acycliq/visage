@@ -119,13 +119,17 @@ For `geneData.tsv`
 
 
 #### 3. Storing the data
-Store the data (the tsv flatfiles but also the JPGs for the map tiles) on Google Cloud Storaga. In most cases you will stay within the free quota or 
+Store the data (the tsv flatfiles but also the JPGs for the map tiles) on Google Cloud Storage. In most cases you will stay within the free quota or 
 maybe get charged with a tiny fee but please monitor your usage to avoid unpleasant surprises. The CA1 dataset (3 tsv and the map tiles) cost me £0.10.
 
 There is also the alternative of storing the data in some Github repo, keeping however thousands of JPGs looks like an abuse of good practices despite 
 the fact that it can be done. Let me know if you want the code that fetches the data using the Github API.
 
+#### 4. Configuration
+You have now saved your data. To visualise them you need to tell the viewer where to look for them. This task is handled by the file
+[config.js](https://github.com/acycliq/ca1/blob/main/viewer/js/config.js)
+
 #### 4. Color schemes
 
 
-#### 4. Configuration
+
