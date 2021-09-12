@@ -91,7 +91,7 @@ For `geneData.tsv`
 
 #### 4. Color schemes
 ```diff
-- text in red
+* One - text in red
 + text in green
 ! text in orange
 # text in gray
