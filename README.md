@@ -48,6 +48,10 @@ Note that you have to install [pyvips](https://anaconda.org/conda-forge/pyvips).
 to install the [libvips binary](https://libvips.github.io/libvips/install.html) and put in in your `PATH`
 
 #### 3. Viewer flat files
+The viewer can work with cell typed data but also with impartial ones. Impartial data means you might have only the (x,y) of 
+your spots and nothing else or the the spots and the cell boundaries but you are missing the spot-to-cell and cell-to-cell type assignments.
+
+##### 3.1. Cell-typed flat files
 The following three tsv files are needed:
 * cellData.tsv
 * geneData.tsv
@@ -57,7 +61,7 @@ The scheme (ie columns) for `cellData.tsv` and `geneData.tsv` is the same as the
 [notebook](https://colab.research.google.com/github/acycliq/pciSeq/blob/master/notebooks/pciSeq.ipynb) from the pciSeq repo. 
 The `cellBoundaries.tsv` should have two columns: `cell_id` and	`coords`. The `cell_id` is the same as the `Cell_Num` column from `cellData.tsv` 
 and `coords` describes the boundaries and is a list of lists. Each sublist has the x, y coords of the points defining the polygon of the outer ring.
-The polygon should be a closed polygon, ie the first and the last pair of coordinates should be the same
+The polygon should be a closed one, ie the first and the last pair of coordinates should be the same.
   
 #### 4. Color schemes
  
