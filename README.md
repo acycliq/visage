@@ -8,7 +8,7 @@ CA1 data from [Qian, X., et al. Nature Methods (2020)](https://www.nature.com/ar
 ## Instructions
 You can feed your own data, cell typed or not; Please read below for more details
 
-#### 1. Intro
+#### 1. Introduction
 Download/clone the master branch from this repo. All the necessary code will be under the `\viewer\js\` directory. 
 No extra installations are needed to run the viewer (apart from maybe Python solely for the purpose of running a webserver. 
 However, you will need Python if you want to pass your own data). You can also use `github-pages` to host the website and demo your findings
@@ -62,7 +62,34 @@ The scheme (ie columns) for `cellData.tsv` and `geneData.tsv` is the same as the
 The `cellBoundaries.tsv` should have two columns: `cell_id` and	`coords`. The `cell_id` is the same as the `Cell_Num` column from `cellData.tsv` 
 and `coords` describes the boundaries and is a list of lists. Each sublist has the x, y coords of the points defining the polygon of the outer ring.
 The polygon should be a closed one, ie the first and the last pair of coordinates should be the same.
-  
+
+##### 3.2. Cell-type info unavailable
+Suppose now that your data havent been processed by a cell calling algorithm hence the spot-to-cell and cell-to-cell type probabilities are missing. 
+Everything else however like cell centroids, cell boundaries, spot coordinates etc are known. In this case, the cellBoundaries.tsv file is exactly the same 
+as previously
+
+Cell_Num: The id of the cell (It matches the cell_id from the cellBoundaries.tsv)
+X: This will be the x-coord of the cell centroid. It is currently set to 0 as a dummy value
+Y: This will be the y-coord of the cell centroid. It is currently set to 0 as a dummy value
+Genenames: This will be a list of the genes assigned to the cell. Leave that as an empty list
+CellGeneCount: The total number of spots (dots) assigned to the cell. Leave that as an empty list
+ClassName: The will be a list of the most probable cell types (aka class name) of the cell. Leave that as a single element list [‘Generic’]
+Prob: The probabilities of each cell type. Leave that as a single element list [1.0]
+ 
+
+The geneData
+
+File geneData.tsv has now the following columns
+
+Gene. The gene name, the label of the the spot
+X. the x-coord of the spot
+Y: the y-coord of the spot
+Gene_id: Self explanatory
+neighbour: The cell_id of the cell that the spot will be assigned to with the highest prob. It is currently set to the dummy value of 0
+neighbour_array: A list of the cell_ids of the 4 closest to the spot cells. It is currently set to the dummy list [0]
+neighbour_prob: A list of the corresponding probabilities It expresses the prob that the cell will be “given” the particular spot. It is currently set to the dummy list [1.0]
+
+
 #### 4. Color schemes
  
 
