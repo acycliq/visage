@@ -112,7 +112,7 @@ For `geneData.tsv`
 * `neighbour_prob`: A list of the corresponding probabilities It expresses the prob that the cell will be “given” the particular spot. Set this to the list `[1.0]`
 
 
-##### 3.2. Cell-type info and cell bouundaries unavailable. 
+##### 3.2. Cell-type info and cell boundaries unavailable. 
 Lets now assume that you have the bare minimum; Only the spot coords are known (together with their gene names) and you do not have cell type info and the 
 cell boundaries. You only want to plot the spots on the dapi background.
 
