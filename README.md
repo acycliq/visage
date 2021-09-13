@@ -58,7 +58,30 @@ The following three tsv files are needed:
 * cellBoundaries.tsv
 
 The scheme (ie columns) for `cellData.tsv` and `geneData.tsv` is the same as their counterpart dataframes explained in section 3 of this 
-[notebook](https://colab.research.google.com/github/acycliq/pciSeq/blob/master/notebooks/pciSeq.ipynb) from the pciSeq repo. 
+[notebook](https://colab.research.google.com/github/acycliq/pciSeq/blob/master/notebooks/pciSeq.ipynb) from the pciSeq repo. For completeness the schema is 
+also included below:
+
+For `cellData.tsv`
+* `Cell_Num`: An non-zero positive integer denoting the id of the cell. If we sort the values of this column, then they should start at 1 and
+              the increment should also be 1    
+* `X`: This will be the x-coord in pixels of the cell centroid. It is currently set to 0 as a dummy value
+* `Y`: This will be the y-coord in pixels of the cell centroid. It is currently set to 0 as a dummy value
+* `Genenames`: This will be a list (for example ['Vip', 'Chodl', 'Aldoc']) of the genes assigned to the cell.
+* `CellGeneCount`: The total number of spots (for example [0,12, 5.2, 1.23]) assigned to the cell. For this given example we can understand that
+`Vip` has `0.12` counts, `Chodl` `5.2` and Aldoc `1.23`
+* `ClassName`: The will be a list of the most probable cell types (for example ['Astro.1', 'Sst.Npy', 'Calb2.Vip', 'Zero']) of the cell.
+* `Prob`: The probabilities of each cell type, for example [0.27, 0.12, 0.05, 0.56]
+ 
+
+For `geneData.tsv`
+* `Gene`. The gene name, the label of the the spot
+* `X`. the x-coord in pixels of the spot
+* `Y`: the y-coord in pixels of the spot
+* `Gene_id`: An non-zero positive integer denoting the id of the gene. We make this by sorting the unique gene names. Then the `Gene_id` is the position of each gene name in this (0-based) sorted list.
+* `neighbour`: The cell_id of the cell that the spot will be assigned to with the highest prob. 
+* `neighbour_array`: A list of the cell_ids of the 4 closest to the spot cells. 
+* `neighbour_prob`: A list of the corresponding probabilities It expresses the prob that the cell will be “given” the particular spot.
+
 The `cellBoundaries.tsv` should have two columns: `cell_id` and	`coords`. The `cell_id` is the same as the `Cell_Num` column from `cellData.tsv` 
 and `coords` describes the boundaries and is a list of lists. Each sublist has the x, y coords of the points defining the polygon of the outer ring.
 The polygon should be a closed one, ie the first and the last pair of coordinates should be the same.
@@ -83,7 +106,7 @@ For `geneData.tsv`
 *`Gene`. The gene name, the label of the the spot
 * `x`. the x-coord of the spot
 * `y`: the y-coord of the spot
-* `Gene_id`: Self explanatory
+* `Gene_id`: Integer value >= 0. Sort the unique gene names. the `Gene_id` is the position of each gene name in this (0-based) sorted list.
 * `neighbour`: The cell_id of the cell that the spot will be assigned to with the highest prob. It is currently set to the dummy value of `0`
 * `neighbour_array`: A list of the cell_ids of the 4 closest to the spot cells. It is currently set to the dummy list `[0]`
 * `neighbour_prob`: A list of the corresponding probabilities It expresses the prob that the cell will be “given” the particular spot. Set this to the list `[1.0]`
