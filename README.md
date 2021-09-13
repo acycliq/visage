@@ -64,13 +64,13 @@ also included below:
 For `cellData.tsv`
 * `Cell_Num`: An non-zero positive integer denoting the id of the cell. If we sort the values of this column, then they should start at 1 and
               the increment should also be 1    
-* `X`: This will be the x-coord in pixels of the cell centroid. It is currently set to 0 as a dummy value
-* `Y`: This will be the y-coord in pixels of the cell centroid. It is currently set to 0 as a dummy value
-* `Genenames`: This will be a list (for example ['Vip', 'Chodl', 'Aldoc']) of the genes assigned to the cell.
-* `CellGeneCount`: The total number of spots (for example [0,12, 5.2, 1.23]) assigned to the cell. For this given example we can understand that
+* `X`: This will be the x-coord in pixels of the cell centroid. 
+* `Y`: This will be the y-coord in pixels of the cell centroid. 
+* `Genenames`: This will be a list (for example `['Vip', 'Chodl', 'Aldoc']`) of the genes assigned to the cell.
+* `CellGeneCount`: The total number of spots (for example `[0,12, 5.2, 1.23]`) assigned to the cell. For this given example we can understand that
 `Vip` has `0.12` counts, `Chodl` `5.2` and Aldoc `1.23`
-* `ClassName`: The will be a list of the most probable cell types (for example ['Astro.1', 'Sst.Npy', 'Calb2.Vip', 'Zero']) of the cell.
-* `Prob`: The probabilities of each cell type, for example [0.27, 0.12, 0.05, 0.56]
+* `ClassName`: The will be a list of the most probable cell types (for example `['Astro.1', 'Sst.Npy', 'Calb2.Vip', 'Zero']`) of the cell.
+* `Prob`: The probabilities of each cell type, for example `[0.27, 0.12, 0.05, 0.56]`
  
 
 For `geneData.tsv`
