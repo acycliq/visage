@@ -159,7 +159,7 @@ function run() {
     console.log('app starts');
     configSettings = config();
 
-    fetcher([encode(configSettings.cellData), encode(configSettings.geneData), encode(configSettings.cellBoundaries)]).then(
+    fetcher([configSettings.cellData, configSettings.geneData, configSettings.cellBoundaries]).then(
         result => make_package(result),
         error => alert(error) // doesn't run
     );
