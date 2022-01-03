@@ -312,3 +312,18 @@ function aggregate(data) {
     var aggData = dataManager(data);
     return aggData
 }
+
+
+function mapSide(z){
+    // returns the size of the map at zoom level z.
+    // Assumes that the tile is a multiple if 256px-by-256px
+    return 256 * 2**z
+}
+
+function mapSize(z){
+    var length = mapSide(z);
+    var x_scalar = configSettings.roi.x1/Math.max(configSettings.roi.x1, configSettings.roi.y1);
+    var y_scalar = configSettings.roi.y1/Math.max(configSettings.roi.x1, configSettings.roi.y1);
+    return [Math.round(length*x_scalar), Math.round(length*y_scalar)]
+}
+
