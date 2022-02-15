@@ -51,7 +51,8 @@
     sessionStorage['dtCompleted'] =  0;
     var table;
     $(document).ready(function () {
-        var legendData = glyphSettings().filter(d => {return d.gene != 'Generic'})
+        var gene_panel = JSON.parse(sessionStorage.getItem('gene_panel'));
+        var legendData = glyphSettings().filter(d => gene_panel.includes(d.gene))
           .map((d,i) => {return [i, d.gene, d.glyphName, glyphColor(d.taxonomy)]});
         table = $('#example').DataTable({
             'data': legendData,

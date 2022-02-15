@@ -6,6 +6,7 @@
 // Variables in the global scope
 var cellBoundaries,
     cellData,
+    genepanel,
     all_geneData,
     spotsIndex, //spatial index
     dapiConfig,
@@ -89,6 +90,25 @@ var storageMonitor = function () {
     };
 }();
 $(window).on("storage", storageMonitor);
+
+
+function getGenePanel(geneData) {
+    var panel = [...new Set(geneData.map(d => d.Gene))].sort();
+    console.log('Gene panel has ' + panel.length + ' genes.');
+
+    // drop a warning if a gene is not set in the configuration file
+    var cfg_genes = glyphSettings().map(d => d.gene).sort();
+    var missing = panel.filter(x => !cfg_genes.includes(x));
+    if (missing.length > 0) {
+        console.log('Waring: These genes have not been assigned color, glyph etc in the glyphConfig.js: ' + missing);
+    }
+
+    // save the gene panel to the local storage
+    sessionStorage.setItem('gene_panel', JSON.stringify(panel));
+    console.log('Gene panel written to local storage')
+
+    return panel
+}
 
 
 function legendControl() {
@@ -237,7 +257,9 @@ function postLoad(arr) {
     _cellData = _cellData.sort(function(a,b){return a.Cell_Num-b.Cell_Num});
     _cellBoundaries = _cellBoundaries.sort(function(a,b){return a.Cell_Num-b.Cell_Num});
 
-    return [_cellBoundaries, _cellData]
+    var _genepanel = getGenePanel(arr[2])
+
+    return [_cellBoundaries, _cellData, _genepanel]
 }
 
 function maxIndex(data){
