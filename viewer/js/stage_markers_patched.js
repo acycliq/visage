@@ -56,10 +56,10 @@ function add_spots_patched(all_geneData, map) {
         // Divide by 2 to keep the marker the same as size. Hence if for zoom level = 3 the  return value from
         // this function is lets say zo 10, then when to keep the same size on the screen for the dot, at zoom = 4
         // the return value should be 5
-        var map_size = Math.max(...configSettings.imageSize),
+        var map_side = mapSide(configSettings.zoomLevels),
             dapi_size = [configSettings.roi.x1 - configSettings.roi.x0, configSettings.roi.y1 - configSettings.roi.y0],
             max_dapi = Math.max(...dapi_size),
-            c = map_size / max_dapi,
+            c = map_side / max_dapi,
             tiny_dot = 1 / (2**z),
             dot = c * tiny_dot;
         return dot * scale

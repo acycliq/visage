@@ -1,16 +1,16 @@
 function dapi(cfg) {
     console.log('Doing Dapi plot');
 
-    var img = cfg.imageSize,
+    var map_dims = mapSize(cfg.zoomLevels),
         tiles = cfg.tiles,
         roi = cfg.roi;
     // var img = [227951, 262144],
     //     roi = {"x0": 0, "x1": 40000, "y0": 0, "y1": 46000};
 
-    var a = img[0] / (roi.x1 - roi.x0),
-        b = -img[0] / (roi.x1 - roi.x0) * roi.x0,
-        c = img[1] / (roi.y1 - roi.y0),
-        d = -img[1] / (roi.y1 - roi.y0) * roi.y0;
+    var a = map_dims[0] / (roi.x1 - roi.x0),
+        b = -map_dims[0] / (roi.x1 - roi.x0) * roi.x0,
+        c = map_dims[1] / (roi.y1 - roi.y0),
+        d = -map_dims[1] / (roi.y1 - roi.y0) * roi.y0;
 
     // This transformation maps a point from the roi domain to the domain defined by [0,0] amd [img[0], img[1]].
     var t = new L.Transformation(a, b, c, d);
@@ -20,14 +20,14 @@ function dapi(cfg) {
         transformation: new L.Transformation(1 / 1024, 0, 1 / 1024, 0),
     });
 
-    var southWest = L.latLng(img[1], img[0]),
+    var southWest = L.latLng(map_dims[1], map_dims[0]),
         northEast = L.latLng(0, 0),
         mapBounds = L.latLngBounds(southWest, northEast);
 
     map = L.map('mymap', {
         crs: L.CRS.MySimple,
         attributionControl: false,
-    }).setView([img[1], img[0] / 2], 2);
+    }).setView([map_dims[1], map_dims[0] / 2], 2);
     L.tileLayer(tiles, {
         minZoom: 0,
         maxZoom: 8,
