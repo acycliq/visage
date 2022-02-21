@@ -24,7 +24,7 @@ Then there are three main steps:
  * Set the color scheme of your choice for the genes and cells
  
 #### 2. Tiling the background image
-As a backgound, in most cases we will be a showing a dapi stain. We should have the original image in a tif, jpg, png etc format which will 
+As a backgound, in most casecan see that path in the configus we will be a showing a dapi stain. We should have the original image in a tif, jpg, png etc format which will 
 be processed to produce a nested directory tree of thousands of small 256px-by-256px jpg files called `map tiles`. At any given zoom level 
 the viewer (or to be precise, [leaflet.js](www.leaflet.js)) fetches the necessary tiles and aligns them on the screen making a mosaic that looks 
 to the user as a big single image when in reality it is a collation of small ones. 
@@ -134,7 +134,7 @@ In general the link has the form:
 For example I
 uploaded `cellData.tsv` inside a folder called `cellData` and my bucker name is `ca1-data`, hence the link is: `https://www.googleapis.com/storage/v1/b/ca1-data/o/cellData/cellData.tsv`.
 However the urls for the tsv files should be encoded and in practice this means that any `/` inside the `<path_to_tsv>` part should be replaced by `%2F`. Therefore the link you need to
-set in  config.js](https://github.com/acycliq/ca1/blob/main/viewer/js/config.js) becomes:
+set in [config.js](https://github.com/acycliq/ca1/blob/main/viewer/js/config.js) becomes:
 
 `https://www.googleapis.com/storage/v1/b/ca1-data/o/cellData%2FcellData.tsv`
 
