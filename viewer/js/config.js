@@ -6,7 +6,7 @@ function config() {
             cellData: 'https://www.googleapis.com/storage/v1/b/ca1-data/o/cellData%2FcellData.tsv',
             geneData: 'https://www.googleapis.com/storage/v1/b/ca1-data/o/geneData%2FgeneData.tsv',
             cellBoundaries: 'https://www.googleapis.com/storage/v1/b/ca1-data/o/cellBoundaries%2FcellBoundaries.tsv',
-            class_name_separator: '.' //Classes/subclasees etc are delimited by a dot
+            class_name_separator: '.' // Classes/subclasees etc are delimited by a dot
         }
 }
 
