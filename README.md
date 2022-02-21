@@ -58,9 +58,23 @@ If you are on Windows get the `libvips` executable and then add it to your `PATH
 
 When `tile_maker` finishes it should have created a big directory tree of nested folders that at its top level will look like the screenshot below:
 
-<img src="viewer/assets/directory_tree.jpg" alt="Tile maker"/>
+<!--
+![directory_tree \label{mylabel}](viewer/assets/directory_tree.jpg)
+Fig:1 Nested directory tree
 
-Each of the these folders correspond to a zoom level and contain all the necessary tiles as 256px-by-256px small jpg files that can reproduce the background image for that given level.
+
+<figure>
+  <img src="viewer/assets/directory_tree.jpg" alt="my alt text"/>
+  <figcaption>This is my caption text.</figcaption>
+</figure>
+-->
+
+| ![space-1.jpg](viewer/assets/directory_tree.jpg) | 
+|:--:| 
+| *Fig:1 Nested directory tree* |
+
+
+Each of the these folders corresponds to a zoom level and contain all the necessary tiles as 256px-by-256px small jpg files that can reproduce the background image for that given level.
 
 #### 3. Viewer flat files
 The viewer needs three text flat files:
@@ -82,31 +96,30 @@ This will make a folder named `pciSeq` in your system's TEMP directory where the
 Store the data (the tsv flatfiles but also the JPGs for the map tiles) on Google Cloud Storage. In most cases you will stay within the free quota or 
 maybe get charged with a tiny fee but please monitor your usage to avoid unpleasant surprises. 
 
-When moving the map tiles to google cloud storage do not move anything that corresponds to `z=9` and `z=10` (ie the last two folders in the directory tree shown in image ??).
+When moving the map tiles to google cloud storage do not move anything that corresponds to `z=9` and `z=10` (ie the last two folders in the directory tree shown in Fig:1).
 These are very big folders containing thousands and thousands of files but it is very unlikely they will be of any use unless you have a full coronal slice.
 
-I also make the Google Cloud Storage bucket that keeps my files public, otherwise you will have to set the permissions appropriately.
+I would also suggest to make the Google Cloud Storage bucket public, otherwise you will have to set the permissions appropriately.
 
 
 #### 5. Configuration
 You have now saved your data. To visualise them you need to tell the viewer where to look for them. This task is handled by the file
 [config.js](https://github.com/acycliq/ca1/blob/main/viewer/js/config.js) also show in the image below:
-
-<img src="viewer/assets/config.jpg" alt="config.js"/>
+![config.js \label{config.js}](viewer/assets/config.jpg)
 
 ##### 5.1 Image dimensions:
 Use the line:
 
-<img src="viewer/assets/roi_config.jpg" alt="roi_config.js"/>
+![roi_config.js \label{roi_config.js}](viewer/assets/roi_config.jpg)
 
 to input the dimensions of your image. Leave `x0` and `y0` to zero and set `x1`, `y1` equal to the width and height (in pixels) respectively of your image.
 
 ##### 5.2 Map tiles:
 In my Google Cloud Storage I have created a public bucket called `ca1-data` with a folder `img` and its subfolder `262144px`. Hence the path is `ca1-data/img/262144px` and 
-this is the location where the directory tree structure (see image ??) has been uploaded. You can see that path in the configuration file [config.js](https://github.com/acycliq/ca1/blob/main/viewer/js/config.js)
+this is the location where the directory tree structure (see Fig:1) has been uploaded. You can see that path in the configuration file [config.js](https://github.com/acycliq/ca1/blob/main/viewer/js/config.js)
 in the line that sets the tiles' location:
 
-<img src="viewer/assets/tiles_config.jpg" alt="Tiles config"/>
+![tiles_config \label{tiles_config}](viewer/assets/tiles_config.jpg)
 
 Change this path to match your data and bucket setup but leave the `/{z}/{y}/{x}.jpg` part unchanged in your `config.js`. As a sanity check, if you replace it with  `/0/0/0.jpg`, ie effectively making the link
 `https://storage.googleapis.com/ca1-data/img/262144px/0/0/0.jpg`, then this link should be a live link pointing to a jpg; In my case it gives [this](https://storage.googleapis.com/ca1-data/img/262144px/0/0/0.jpg).
@@ -120,7 +133,7 @@ In general the link has the form:
 
 For example I
 uploaded `cellData.tsv` inside a folder called `cellData` and my bucker name is `ca1-data`, hence the link is: `https://www.googleapis.com/storage/v1/b/ca1-data/o/cellData/cellData.tsv`.
-However the urls for the tsv files should be encoded and in practice this means that any `/` inside the `<path_to_tsv>` part should be replaced by `%2`. Therefore the link you need to
+However the urls for the tsv files should be encoded and in practice this means that any `/` inside the `<path_to_tsv>` part should be replaced by `%2F`. Therefore the link you need to
 set in  config.js](https://github.com/acycliq/ca1/blob/main/viewer/js/config.js) becomes:
 
 `https://www.googleapis.com/storage/v1/b/ca1-data/o/cellData%2FcellData.tsv`
