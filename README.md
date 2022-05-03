@@ -3,7 +3,7 @@ An interactive web-based viewer to visualise 2D spatial transcriptomics data. A 
 CA1 data from [Qian, X., et al. Nature Methods (2020)](https://www.nature.com/articles/s41592-019-0631-4) runs
  [here](https://acycliq.github.io/ca1/)
 
-<img src="viewer/assets/screenshot.jpg" alt="Your image title"/>
+<img src="viewer/assets/screencast.gif" alt="Your image title"/>
 
 ## Instructions
 You can feed your own data, cell typed or not; Please read below for more details
