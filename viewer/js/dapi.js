@@ -364,7 +364,7 @@ function dapi(cfg) {
             };
 
         for (var str of data) {
-            var sep = configSettings.class_name_separator,
+            var sep = '.', //configSettings.class_name_separator,
                 splits,
                 label = '';
             // let splits = str.match(/[a-zA-Z]+|[0-9]+/g), //str.split('.'),
@@ -381,7 +381,7 @@ function dapi(cfg) {
         function myReducer(label) {
             return function (parent, place, i, arr) {
                 if (label) {
-                    var sep = configSettings.class_name_separator;
+                    var sep = '.'; //configSettings.class_name_separator;
                     label += sep + `${place}`; // `.${place}`;
                 }
                 else

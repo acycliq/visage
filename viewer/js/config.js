@@ -6,6 +6,5 @@ function config() {
             cellData: [{mediaLink: './data/cellData.tsv', size: "2396160"}],
             geneData: [{mediaLink: './data/geneData.tsv', size: "9560621"}],
             cellBoundaries: [{mediaLink: './data/cellBoundaries.tsv', size: "1306209"}],
-            class_name_separator: '.' // Classes/subclasees etc are delimited by a dot
         }
 }
