@@ -178,6 +178,9 @@ function hidePanels(bool){
 function run() {
     console.log('app starts');
     configSettings = config();
+    configSettings.cellData[0]["name"] = "cellData";
+    configSettings.geneData[0]["name"] = "geneData";
+    configSettings.cellBoundaries[0]["name"] = "cellBoundaries";
 
     fetcher([configSettings.cellData, configSettings.geneData, configSettings.cellBoundaries]).then(
         result => make_package(result),
@@ -187,7 +190,9 @@ function run() {
 
 const fetcher = (filenames) => {
     return Promise.all(
-        filenames.map(d => fetch(d).then(res => res.json()))
+        filenames.map(d => d[0])
+        // filenames.map(d => fetch(d).then(res => console.log(res.json())))
+        // filenames.map(d => fetch(d).then(res => res.json()))
     )
 };
 
