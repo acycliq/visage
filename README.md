@@ -16,7 +16,7 @@ res = pciSeq.fit(spots_df, label_image, scRNA_df, opts)
 That should save three tsv files (`geneData.tsv`, `cellData.tsv`, `cellBoundaries.tsv`) in your temp directory
 
 #### Step 1
-Download/clone the main branch from this repo and replace the three tsv files under `visage/viewer/data/` with you own
+Download/clone the main branch from this repo and replace the three tsv files under `visage/viewer/data/` with your own
 
 #### Step 2
 In the configuration file `visage/viewer/js/config.js` you need to edit
