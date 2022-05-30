@@ -22,7 +22,7 @@ Download/clone the main branch from this repo and replace the three tsv files un
 In the configuration file `visage/viewer/js/config.js` you need to edit
 * `roi`: This describes the dimensions of your image. Change `x1` and `y1` only and set them to the width and height 
 respectively (in pixels) of your image. 
-Do not change `x0`and `y0` and leave them as zeros.
+Do not change `x0`and `y0` and leave them as zeros.ll data has been m
 * `zoomLevels`: Leave that to 10
 * `tiles`: this is related to the background image of the viewer. However it is not necessary, it is optional. The viewer 
 works without a background image. I will explain how to do that step at a later stage, hence for now just use a blind link there; 
@@ -34,10 +34,10 @@ For example, change the extension and use something like `https://storage.google
  
 #### Step 3
 Set your own colours to the cell classes. To do this just edit `visage/viewer/js/classColors.js`. Make sure that 
-all the cell types from your single cell data has been mapped with a color. If you miss one, then the 
+all the cell class from your single cell data have been associated with a color. If you miss one, then the 
 viewer will not run. 
 Note also that the every cell class is bucketed under a wider type, called `IdentifiedType`. Then each `IdentifiedType` has been 
-assigned a color. Hence all celltypes with the same `IdentifiedType` have the same color.
+assigned a color. Hence all cell classes with the same `IdentifiedType` will have the same color.
 
 #### Step 4
 The spot colors of the spots are set inside the script `visage/viewer/js/glyphConfig.js`. This is also where you can set the shape of the glyph.
