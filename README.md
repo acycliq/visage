@@ -54,5 +54,8 @@ Do the background image. This is not one single image but a mosaic of several sm
 I will cover that step some other day, the viewer works without a background image. However if you want to add that send me an email and I will get back to you.
 
 #### Comment
-Depending on your data, the dot size might sometimes turn to be too large. Let me know if you have any problems to tell you how to fine-tune the marker size.
-
+* Depending on your data, the dot size might sometimes turn to be too large. Let me know if you have any problems to tell you how to fine-tune the marker size.
+* There is collapsible control at the top-right of the viewer that shows a nested tree of the classes/subclasses. It is assumed that class names 
+are dot separated, for example `Astro.1` or `Sst.Npy.Cort`. Nesting will not work if they are not dot-separated (although there is code to specify the separator but hasnt been tested. 
+Let me know if you fall in this case). The control will just show a list of all the cell classes (un-nested)
+but interactivity will still work and the user should be able to hide/show classes by toggling the checkboxes.
