@@ -52,9 +52,18 @@ function dapi(cfg) {
         return out
     }
 
+    function getColor(gene) {
+        if (glyphMap.get(gene)) {
+            out = glyphMap.get(gene).color
+        } else {
+            out = glyphMap.get('Generic').color
+        }
+        return out
+    }
+
+
     // get the svg markers (glyphs)
     var glyphs = glyphSettings();
-    var getColor = glyphColor;
     var glyphMap = d3.map(glyphs, function (d) {
         return d.gene;
     });
@@ -81,7 +90,7 @@ function dapi(cfg) {
             radius: getRadius(feature.properties.size),
             shape: feature.properties.glyphName,
             //fillColor: "none",//getColor(feature.properties.taxonomy),
-            color: glyphColor(feature.properties.taxonomy),
+            color: feature.properties.glyphColor,
             weight: 0.85,
             opacity: 0.85,
             fillOpacity: 0.0,
@@ -156,7 +165,7 @@ function dapi(cfg) {
                 // "Cell_Num": origin.Cell_Num,
                 "fromPoint": fromPoint,
                 "toPoint": toPoint,
-                "color": getColor(getTaxonomy(gene)),
+                "color": getColor(gene),
                 // "color": getColor(glyphMap.get(gene).taxonomy),
             };
 

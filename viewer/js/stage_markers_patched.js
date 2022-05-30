@@ -15,7 +15,7 @@ function add_spots_patched(all_geneData, map) {
     }
 
     function markerColor(geneName) {
-        var colorCode = glyphColor(glyphSettings().filter(d => d.gene === geneName)[0].taxonomy);
+        var colorCode = glyphSettings().filter(d => d.gene === geneName)[0].color;
         var out = myUtils().string2hex(colorCode);
         return out
     }
