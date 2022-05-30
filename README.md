@@ -6,141 +6,53 @@ CA1 data from [Qian, X., et al. Nature Methods (2020)](https://www.nature.com/ar
 <img src="viewer/assets/screencast.gif" alt="Your image title"/>
 
 ## Instructions
-You can feed your own data, cell typed or not; Please read below for more details
-
-#### 1. Introduction
-Download/clone the master branch from this repo. All the necessary code will be under the `\viewer\js\` directory. 
-No extra installations are needed to run the viewer (apart from maybe Python solely for the purpose of running a webserver. 
-However, you will need Python too run pciSeq and produce the data that will be consumed by the viewer). You can also use `github-pages` to host the website and make your findings
-available to a wider audience.
-
-As a sanity check your local copy of the code should run fine if you open `index.html` that you will 
-find under the root folder. Note that we need to serve the root directory (hence the need for Python) 
-but most modern IDEs do that automatically behind the scenes    
-
-Then there are three main steps:
- * Prepare the background image
- * Save you data in the correct form so they can be digested by the viewer
- * Set the color scheme of your choice for the genes and cells
- 
-#### 2. Tiling the background image
-As a backgound, in most casecan see that path in the configus we will be a showing a dapi stain. We should have the original image in a tif, jpg, png etc format which will 
-be processed to produce a nested directory tree of thousands of small 256px-by-256px jpg files called `map tiles`. At any given zoom level 
-the viewer (or to be precise, [leaflet.js](www.leaflet.js)) fetches the necessary tiles and aligns them on the screen making a mosaic that looks 
-to the user as a big single image when in reality it is a collation of small ones. 
-Read [here](https://en.wikipedia.org/wiki/Tiled_web_map), [here](https://docs.microsoft.com/en-us/azure/azure-maps/zoom-levels-and-tile-grid?tabs=csharp) and
-[here](https://www.e-education.psu.edu/geog585/node/706) for more details on tiled maps
-
-Install `pciSeq` via `pip install pciSeq` and call the `tile_maker` function. Set the `z-depth` parameter to `10` despite the fact that in several cases this will be an overkill. Ten zoom levels will be needed for very big images, like 
-full coronal slices, otherwise eight levels, or even six, will be fine. However setting `z-depth = 10` will simplify the process of adopting the code and use it with your 
-own data especially if you do this for the first time. 
-The rest of the arguments are self-explanatory. A typical example will look like:
-
+The easiest way is to run `pciSeq.fit()` and pass a dict with `save_data` set to `True` as the options arg:
 ```python
 import pciSeq
 
-pciSeq.tile_maker(z_value, path\to\target\dir, path\to\dapi_image.tif)
+opts = { 'save_data': True }
+res = pciSeq.fit(spots_df, label_image, scRNA_df, opts)
 ```
+That should save three tsv files (`geneData.tsv`, `cellData.tsv`, `cellBoundaries.tsv`) in your temp directory
 
-For `z_value = 10` as recommended, this operation on my Intel i7 Windows 10 PC takes about 1h:15mins to complete
+#### Step 1
+Download/clone the main branch from this repo. 
 
-Note that you have to install the [libvips binary](https://libvips.github.io/libvips/install.html). If this is missing the `tile_maker()` 
-will not be exposed by `pciSeq` and you will get the following message if you try to call it: `AttributeError: module 'pciSeq' has no attribute 'tile_maker'`
+#### Step 2
+Replace the three tsv files under `visage/viewer/data/` with you own
+
+#### Step 3
+In the configuration file `visage/viewer/js/config.js` you need to edit
+* `roi`: This describes the dimensions of your image. Change `x1` and `y1` only and set them to the width and height 
+respectively (in pixels) of your image. 
+Do not change `x0`and `y0` and leave them as zeros.
+* `zoomLevels`: Leave that to 10
+* `tiles`: this is related to the background image of the viewer. However it is not necessary, it is optional. The viewer 
+works without a background image. I will explain how to do that step at a later stage, hence for now just use a blind link there; 
+For example, change the extension and use something like `https://storage.googleapis.com/ca1-data/img/262144px/{z}/{y}/{x}.jpg_ZZZ`
+ * `cellData`: If you have followed step 2 above you will not have to change the `mediaLink` value. Just update size to the size in bytes of 
+ your own `cellData.tsv`
+ * `geneData`: Same as above
+ * `cellBoundaries`: Same as above
  
-If you are using Linux and for some reason `libvips` is missing then the following commands should help:
-   
-    apt-get update
-    apt-get upgrade
-    apt-get install libvips
-    pip install pyvips
+#### Step 4
+Set your own colours to the cell classes. To do this just edit `visage/viewer/js/classColors.js`. Make sure that 
+all the cell types from your single cell data has been mapped with a color. If you miss one, then the 
+viewer will not run. 
+Note also that the every cell class is bucketed under a wider type, called `IdentifiedType`. Then each `IdentifiedType` has been 
+assigned a color. Hence all celltypes with the same `IdentifiedType` have the same color.
 
-If you are on Windows get the `libvips` executable and then add it to your `PATH`
+#### Step 5
+The spot colors of the spots are set inside the script `visage/viewer/js/glyphConfig.js`. This is also where you can set the shape of the glyph.
+As you zoom-in and you get closer to the scene the dots will take some shape and the combination shape-color uniquely identifies a gene. 
+The glyph shapes are defined in `visage/viewer/js/glyphPaths.js`. No need to edit `glyphPaths.js` unless you want to design a new shape. 
+You only have to edit `glyphConfig.js` so that it describes the color scheme of your preference for your data. Just make sure every single 
+gene of your gene panel is included `glyphConfig.js`; If even one is missing, the viewer will not load.
 
-When `tile_maker` finishes it should have created a big directory tree of nested folders that at its top level will look like the screenshot below:
+#### Step 6
+Do the background image. This is not one single image but a mosaic of several small tiles, conceptually similar to the way google maps works for example. 
+I will cover that step some other day, the viewer works without a background image. However if you want to add that send me an email and I will get back to you.
 
-<!--
-![directory_tree \label{mylabel}](viewer/assets/directory_tree.jpg)
-Fig:1 Nested directory tree
-
-
-<figure>
-  <img src="viewer/assets/directory_tree.jpg" alt="my alt text"/>
-  <figcaption>This is my caption text.</figcaption>
-</figure>
--->
-
-| ![space-1.jpg](viewer/assets/directory_tree.jpg) | 
-|:--:| 
-| *Fig:1 Nested directory tree* |
-
-
-Each of the these folders corresponds to a zoom level and contain all the necessary tiles as 256px-by-256px small jpg files that can reproduce the background image for that given level.
-
-#### 3. Viewer flat files
-The viewer needs three text flat files:
-* cellData.tsv
-* geneData.tsv
-* cellBoundaries.tsv
-
-These can be produced directly from the `fit()` method of `pciSeq` if you set the `save_data` argument to `True`:
- 
-        import pciSeq
-
-        opts = {'save_data': True}
-        res = pciSeq.fit(spots_df, label_image, scRNA_df, opts)
-This will make a folder named `pciSeq` in your system's TEMP directory where the three tsv files will be saved when the `fit()` method finishes.
-
-
-
-#### 4. Storing the data
-Store the data (the tsv flatfiles but also the JPGs for the map tiles) on Google Cloud Storage. In most cases you will stay within the free quota or 
-maybe get charged with a tiny fee but please monitor your usage to avoid unpleasant surprises. 
-
-When moving the map tiles to google cloud storage do not move anything that corresponds to `z=9` and `z=10` (ie the last two folders in the directory tree shown in Fig:1).
-These are very big folders containing thousands and thousands of files but it is very unlikely they will be of any use unless you have a full coronal slice.
-
-I would also suggest to make the Google Cloud Storage bucket public, otherwise you will have to set the permissions appropriately.
-
-
-#### 5. Configuration
-You have now saved your data. To visualise them you need to tell the viewer where to look for them. This task is handled by the file
-[config.js](https://github.com/acycliq/ca1/blob/main/viewer/js/config.js) also show in the image below:
-![config.js \label{config.js}](viewer/assets/config.jpg)
-
-##### 5.1 Image dimensions:
-Use the line:
-
-![roi_config.js \label{roi_config.js}](viewer/assets/roi_config.jpg)
-
-to input the dimensions of your image. Leave `x0` and `y0` to zero and set `x1`, `y1` equal to the width and height (in pixels) respectively of your image.
-
-##### 5.2 Map tiles:
-In my Google Cloud Storage I have created a public bucket called `ca1-data` with a folder `img` and its subfolder `262144px`. Hence the path is `ca1-data/img/262144px` and 
-this is the location where the directory tree structure (see Fig:1) has been uploaded. You can see that path in the configuration file [config.js](https://github.com/acycliq/ca1/blob/main/viewer/js/config.js)
-in the line that sets the tiles' location:
-
-![tiles_config \label{tiles_config}](viewer/assets/tiles_config.jpg)
-
-Change this path to match your data and bucket setup but leave the `/{z}/{y}/{x}.jpg` part unchanged in your `config.js`. As a sanity check, if you replace it with  `/0/0/0.jpg`, ie effectively making the link
-`https://storage.googleapis.com/ca1-data/img/262144px/0/0/0.jpg`, then this link should be a live link pointing to a jpg; In my case it gives [this](https://storage.googleapis.com/ca1-data/img/262144px/0/0/0.jpg).
-If this link, appropriately changed to accommodate your data doesnt return anything when used in a browser, then something has been set wrong.
-
-##### 5.2 Flat files:
-These are set in a similar manner to the map tiles. You upload the tsv files somewhere in your bucket and then you have to point the configuaration file to that folder in the cloud. 
-In general the link has the form:
-
-`https://www.googleapis.com/storage/v1/b/<bucket_name>/o/<path_to_tsv>`
-
-For example I
-uploaded `cellData.tsv` inside a folder called `cellData` and my bucker name is `ca1-data`, hence the link is: `https://www.googleapis.com/storage/v1/b/ca1-data/o/cellData/cellData.tsv`.
-However the urls for the tsv files should be encoded and in practice this means that any `/` inside the `<path_to_tsv>` part should be replaced by `%2F`. Therefore the link you need to
-set in [config.js](https://github.com/acycliq/ca1/blob/main/viewer/js/config.js) becomes:
-
-`https://www.googleapis.com/storage/v1/b/ca1-data/o/cellData%2FcellData.tsv`
-
-For `geneData.tsv` and `cellBundaries.tsv` the logic is the same.
-#### 4. Color schemes
-TBA
-
-
+#### Comment
+Depending on your data, the dot size might sometimes turn to be too large. Let me know if you have any problems to tell you how to fine-tune the marker size.
 
