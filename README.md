@@ -6,7 +6,7 @@ CA1 data from [Qian, X., et al. Nature Methods (2020)](https://www.nature.com/ar
 <img src="viewer/assets/screencast.gif" alt="Your image title"/>
 
 ## Instructions
-The easiest way is to run `pciSeq.fit()` and pass a dict with `save_data` set to `True` as the options arg:
+The easiest way is to run `pciSeq.fit()` passing a dict with `save_data` set to `True` as the options arg:
 ```python
 import pciSeq
 
