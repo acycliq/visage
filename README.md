@@ -53,7 +53,7 @@ gene of your gene panel is included `glyphConfig.js`; If even one is missing, th
 Do the background image. This is not one single image but a mosaic of several small tiles, conceptually similar to the way google maps works for example. 
 I will cover that step some other day, the viewer works without a background image. However if you want to add that send me an email and I will get back to you.
 
-#### Comment
+#### Comments
 * Depending on your data, the dot size might sometimes turn to be too large. Let me know if you have any problems to tell you how to fine-tune the marker size.
 * There is collapsible control at the top-right of the viewer that shows a nested tree of the classes/subclasses. It is assumed that class names 
 are dot separated, for example `Astro.1` or `Sst.Npy.Cort`. Nesting will not work if they are not dot-separated (although there is code to specify the separator but hasnt been tested. 
