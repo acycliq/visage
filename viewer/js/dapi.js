@@ -4,8 +4,6 @@ function dapi(cfg) {
     var map_dims = mapSize(cfg.zoomLevels),
         tiles = cfg.tiles,
         roi = cfg.roi;
-    // var img = [227951, 262144],
-    //     roi = {"x0": 0, "x1": 40000, "y0": 0, "y1": 46000};
 
     var a = map_dims[0] / (roi.x1 - roi.x0),
         b = -map_dims[0] / (roi.x1 - roi.x0) * roi.x0,
@@ -27,7 +25,7 @@ function dapi(cfg) {
     map = L.map('mymap', {
         crs: L.CRS.MySimple,
         attributionControl: false,
-    }).setView([map_dims[1], map_dims[0] / 2], 2);
+    }).setView([map_dims[1]/2, map_dims[0]/2], 2);
     L.tileLayer(tiles, {
         minZoom: 0,
         maxZoom: 8,
@@ -43,12 +41,17 @@ function dapi(cfg) {
         return out
     }
 
+    function inGlyphConfig(gene){
+        return glyphMap.get(gene)? 1 : 0
+    }
+
     function getGlyphName(gene) {
         if (glyphMap.get(gene)) {
             out = glyphMap.get(gene).glyphName
         } else {
             out = glyphMap.get('Generic').glyphName
         }
+        console.log(out)
         return out
     }
 
@@ -58,9 +61,9 @@ function dapi(cfg) {
         } else {
             out = glyphMap.get('Generic').color
         }
+        console.log(out)
         return out
     }
-
 
     // get the svg markers (glyphs)
     var glyphs = glyphSettings();
@@ -162,11 +165,9 @@ function dapi(cfg) {
             //create feature properties
             var p = {
                 "gene": gene,
-                // "Cell_Num": origin.Cell_Num,
                 "fromPoint": fromPoint,
                 "toPoint": toPoint,
                 "color": getColor(gene),
-                // "color": getColor(glyphMap.get(gene).taxonomy),
             };
 
             //create features with proper geojson structure
@@ -431,6 +432,7 @@ function dapi(cfg) {
     dapiData.style = style;
     dapiData.getTaxonomy = getTaxonomy;
     dapiData.getGlyphName = getGlyphName;
+    dapiData.inGlyphConfig = inGlyphConfig;
     dapiData.getNeighbours = getNeighbours;
     dapiData.getColor = getColor;
     dapiData.getRadius = getRadius;

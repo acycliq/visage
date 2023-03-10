@@ -14,9 +14,17 @@ function add_spots_patched(all_geneData, map) {
         return texture;
     }
 
+    var glyph_map = d3.map(glyphSettings(), function (d) {return d.gene; });
+
     function markerColor(geneName) {
-        var colorCode = glyphSettings().filter(d => d.gene === geneName)[0].color;
-        var out = myUtils().string2hex(colorCode);
+        var t = glyph_map.get(geneName)
+        if (!t){
+            console.log('Cannot get color for ' + geneName + '. Defaulting to generic')
+            t = glyph_map.get('Generic')
+        }
+        var hexCode = t.color
+        // var colorCode = glyphSettings().filter(d => d.gene === geneName)[0].color;
+        var out = myUtils().string2hex(hexCode);
         return out
     }
 
