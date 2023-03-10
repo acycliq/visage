@@ -34,7 +34,7 @@ For example, change the extension and use something like `https://storage.google
  * `cellBoundaries`: Same as above
  
 #### Step 3
-Set your own colours to the cell classes. To do this just edit `visage/viewer/js/classColors.js`. Make sure that 
+Set your own colours to the cell classes. To do this just edit `visage/viewer/js/classConfig.js`. Make sure that 
 all the cell class from your single cell data have been associated with a color. If you miss one, then the 
 viewer will not run. 
 Note also that the every cell class is bucketed under a wider type, called `IdentifiedType`. Then each `IdentifiedType` has been 
