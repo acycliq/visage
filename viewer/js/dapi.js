@@ -46,7 +46,7 @@ function dapi(cfg) {
     // if the active one is the last layer. The bullet point always stays at
     // the last layer
     var selectedLayer = Object.values(baseLayers)[nLayers-1]
-    // var selectedLayer = Object.values(baseLayers)[0] // that set the top layer active, the bullet is still at the bottom!!!
+    // var selectedLayer = Object.values(baseLayers)[0] // that sets the top layer active, the bullet is still at the bottom!!!
     selectedLayer.addTo(map)
 
     function getTaxonomy(gene) {
