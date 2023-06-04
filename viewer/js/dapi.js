@@ -36,13 +36,16 @@ function dapi(cfg) {
       baseLayers[key] = L.tileLayer(value);
     }
 
-    // //Add control layers to map
-    L.control.layers(baseLayers, null, {collapsed: false}).addTo(map);
+    var nLayers = Object.values(baseLayers).length
+    //Add control layers to map
+    if (nLayers > 1){
+        L.control.layers(baseLayers, null, {collapsed: false}).addTo(map);
+    }
 
     // It seems I can set the active layer, however on the control it looks as
     // if the active one is the last layer. The bullet point always stays at
     // the last layer
-    var selectedLayer = Object.values(baseLayers)[Object.values(baseLayers).length-1]
+    var selectedLayer = Object.values(baseLayers)[nLayers-1]
     // var selectedLayer = Object.values(baseLayers)[0] // that set the top layer active, the bullet is still at the bottom!!!
     selectedLayer.addTo(map)
 
