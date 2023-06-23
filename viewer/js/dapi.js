@@ -304,29 +304,21 @@ function dapi(cfg) {
                                     "<div class='myTitle' id='dtTitle' style='margin-bottom:5px'> <h4>Highlighted Cell</h4>  " +
                                     " <img src='https://cdn2.iconfinder.com/data/icons/snipicons/500/pin-128.png' class='ribbon'/> " +
                                 "</div>" +
-                                "</div>" +
-                                "<div class='row' style='background-color: rgba(255, 255, 255, 0.0)'>" +
-                                    "<div class='chart-wrapper'>" +
-                                    // "<div class='chart-title' id='dtTitle'> </div>" +
-                                        "<div class='chart-stage'>" +
-                                            "<div class='col-sm-5'>" +
-                                                "<div class='chart-stage' style='background-color: rgba(255, 255, 255, 0.8)'>" +
-                                                    "<table id='dtTable' class='display compact custom' data-page-length='5' width=100%></table>" +
-                                                "</div>" +
-                                            "</div>" +
-                                            "<div class='col-sm-7'>" +
-                                                "<div class='chart-stage' style='background-color: rgba(255, 255, 255, 0.0)'> " +
-                                                    "<div class='summary' id='pie'> " +
-                                                        "<svg width='300' height='180'></svg>" +
-                                                    "</div>" +
-                                                "</div>" +
-                                            "</div>" +
+                                "<div class='row'>" +
+                                    "<div class='col-sm-5'>" +
+                                        "<div class='col-sm-12' style='background-color: darkgrey; padding-left: 0px'>" +
+                                            "<table id='dtTable' class='display compact custom' data-page-length='5' width=100%'></table>" +
                                         "</div>" +
+                                    "</div>" +
+                                    "<div class='col-sm-7'>" +
+                                        "<div class='chart-stage' style='background-color: rgba(255, 255, 255, 0.0)'> " +
+                                            "<div class='summary' id='pie'> " +
+                                        "<svg width='300' height='180'></svg>" +
                                     "</div>" +
                                 "</div>" +
                             "</div>" +
                         "</div>" +
-                    "</div>";
+                     "</div>" ;
 
         return myDiv
     }
