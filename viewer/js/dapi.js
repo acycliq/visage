@@ -10,12 +10,21 @@ function dapi(cfg) {
         c = map_dims[1] / (roi.y1 - roi.y0),
         d = -map_dims[1] / (roi.y1 - roi.y0) * roi.y0;
 
-    // This transformation maps a point from the roi domain to the domain defined by [0,0] amd [img[0], img[1]].
+    // This transformation maps a point from the roi domain to the domain defined by [0,0] and [someScalarX*256*2^maxZoom, someScalarY*256*2^maxZoom].
+    // The scalar is there to make the bounding have the same shape as the roi.
     var t = new L.Transformation(a, b, c, d);
 
     // The transformation in this CRS maps the the top left corner to (0,0) and the bottom right to (256, 256)
+    // Leaflet thinks that the map is 256px-by-256px wide. These are the dimension of the tile at
+    // zoom = 0.
+    // Each side of the map however is 256 * 2 ** maxZoomLevel pixels wide.
+    // For maxZoomLevel = 10 for example the map is 262144px-262144px
+    // Hence we have to specify a factor of 256/262144 = 1/1024.
+    // in general the factor is 256 / (256 * 2 ** maxZoomLevel)
+    var a_x = 256 / (256 * 2 ** cfg.zoomLevels),
+        c_y = 256 / (256 * 2 ** cfg.zoomLevels)
     L.CRS.MySimple = L.extend({}, L.CRS.Simple, {
-        transformation: new L.Transformation(1 / 1024, 0, 1 / 1024, 0),
+        transformation: new L.Transformation(a_x, 0, c_y, 0),
     });
 
     var southWest = L.latLng(map_dims[1], map_dims[0]),
