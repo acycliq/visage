@@ -1,8 +1,8 @@
 function dapi(cfg) {
     console.log('Doing Dapi plot');
 
-    var map_dims = mapSize(cfg.zoomLevels),
-        // tiles = cfg.tiles,
+    var map_dims = mapSize(cfg.maxZoom),
+        tiles = cfg.tiles,
         roi = cfg.roi;
 
     var a = map_dims[0] / (roi.x1 - roi.x0),
@@ -10,23 +10,31 @@ function dapi(cfg) {
         c = map_dims[1] / (roi.y1 - roi.y0),
         d = -map_dims[1] / (roi.y1 - roi.y0) * roi.y0;
 
-    // This transformation maps a point from the roi domain to the domain defined by [0,0] amd [img[0], img[1]].
+    // This transformation maps a point from the roi domain to the domain defined by [0,0] and [someScalarX*256*2^maxZoom, someScalarY*256*2^maxZoom].
+    // The scalar is there to make the bounding have the same shape as the roi.
     var t = new L.Transformation(a, b, c, d);
 
     // The transformation in this CRS maps the the top left corner to (0,0) and the bottom right to (256, 256)
+    // Leaflet thinks that the map is 256px-by-256px wide. These are the dimension of the tile at zoom = 0.
+    // Each side of the map however is 256 * 2 ** maxZoomLevel pixels wide.
+    // For maxZoomLevel = 10 for example the map is 262144px-262144px
+    // Hence we have to specify a factor of 256/262144 = 1/1024.
+    // in general the factor is 256 / (256 * 2 ** maxZoomLevel)
+    var a_x = 256 / (256 * 2 ** cfg.maxZoom),
+        c_y = 256 / (256 * 2 ** cfg.maxZoom)
     L.CRS.MySimple = L.extend({}, L.CRS.Simple, {
-        transformation: new L.Transformation(1 / 1024, 0, 1 / 1024, 0),
+        transformation: new L.Transformation(a_x, 0, c_y, 0),
     });
 
     var southWest = L.latLng(map_dims[1], map_dims[0]),
         northEast = L.latLng(0, 0),
         mapBounds = L.latLngBounds(southWest, northEast);
 
-    map = L.map('mymap', {
+       map = L.map('mymap', {
         crs: L.CRS.MySimple,
         attributionControl: false,
         minZoom: 0,
-        maxZoom: 8,
+        maxZoom: cfg.maxZoom,
         bounds: mapBounds,
     }).setView([map_dims[1]/2, map_dims[0]/2], 2);
 
@@ -321,29 +329,21 @@ function dapi(cfg) {
                                     "<div class='myTitle' id='dtTitle' style='margin-bottom:5px'> <h4>Highlighted Cell</h4>  " +
                                     " <img src='https://cdn2.iconfinder.com/data/icons/snipicons/500/pin-128.png' class='ribbon'/> " +
                                 "</div>" +
-                                "</div>" +
-                                "<div class='row' style='background-color: rgba(255, 255, 255, 0.0)'>" +
-                                    "<div class='chart-wrapper'>" +
-                                    // "<div class='chart-title' id='dtTitle'> </div>" +
-                                        "<div class='chart-stage'>" +
-                                            "<div class='col-sm-5'>" +
-                                                "<div class='chart-stage' style='background-color: rgba(255, 255, 255, 0.8)'>" +
-                                                    "<table id='dtTable' class='display compact custom' data-page-length='5' width=100%></table>" +
-                                                "</div>" +
-                                            "</div>" +
-                                            "<div class='col-sm-7'>" +
-                                                "<div class='chart-stage' style='background-color: rgba(255, 255, 255, 0.0)'> " +
-                                                    "<div class='summary' id='pie'> " +
-                                                        "<svg width='300' height='180'></svg>" +
-                                                    "</div>" +
-                                                "</div>" +
-                                            "</div>" +
+                                "<div class='row'>" +
+                                    "<div class='col-sm-5'>" +
+                                        "<div class='col-sm-12' style='background-color: darkgrey; padding-left: 0px'>" +
+                                            "<table id='dtTable' class='display compact custom' data-page-length='5' width=100%'></table>" +
                                         "</div>" +
+                                    "</div>" +
+                                    "<div class='col-sm-7'>" +
+                                        "<div class='chart-stage' style='background-color: rgba(255, 255, 255, 0.0)'> " +
+                                            "<div class='summary' id='pie'> " +
+                                        "<svg width='300' height='180'></svg>" +
                                     "</div>" +
                                 "</div>" +
                             "</div>" +
                         "</div>" +
-                    "</div>";
+                     "</div>" ;
 
         return myDiv
     }
