@@ -12,4 +12,4 @@ The viewer is controlled by the following files:
 * [glyphConfig.js](viewer/js/glyphConfig.js)
 * [classConfig.js](viewer/js/classConfig.js)
 
-Read the comments therein to understand how to edit them to fit your needs.
+If you want to use your own data, read the comments therein to understand how to edit them to fit your needs.
