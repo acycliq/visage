@@ -24,10 +24,6 @@ To add a background image you need to make a pyramid of tiles. One way to do thi
 
 This will create a tree-like structure of nested directories under a folder named `tiles` in your current directory. It will look like:
 
-
-
-`
-
      tiles 
           |--0
              |--0.jpg     <-- Your image scaled down as a 256px-256px jpg
@@ -50,6 +46,7 @@ This will create a tree-like structure of nested directories under a folder name
              .
              .
              .
+
 `tile_maker()` is a wrapper around `dzsave` of pyvips which depends on lipvips. You can install libvips from 
 [here](https://www.libvips.org/install.html). Because of licensing issues however, dzsave has been removed 
 in the precompiled windows binaries for version 8.14.2 of libvips. It might come back in the future, it looks better though,
