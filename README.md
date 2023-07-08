@@ -15,7 +15,7 @@ The viewer is controlled by the following files:
 If you want to use your own data, read the comments therein to understand how to edit them to fit your needs.
 
 
-### The background image
+## The background image
 To add a background image you need to make a pyramid of tiles. One way to do this is to use `tile_maker()`:
     
     import pciSeq
