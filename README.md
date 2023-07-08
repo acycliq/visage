@@ -20,7 +20,7 @@ To add a background image you need to make a pyramid of tiles. One way to do thi
     
     import pciSeq
 
-    pciSeq.tile_maker('path\to\background_image.tif'. z_depth=8)
+    pciSeq.tile_maker('path\to\background_image.tif', z_depth=8)
 
 This will create a tree-like structure of nested directories under a folder named `tiles` in your current directory. It will look like:
 
