@@ -6,6 +6,7 @@ CA1 data from [Qian, X., et al. Nature Methods (2020)](https://www.nature.com/ar
     <img src="https://github.com/acycliq/visage/blob/main/viewer/assets/screencast_resized.gif?raw=true" alt="Your image title"/>
 </p>
 
+## Settings
 The viewer is controlled by the following files:
 
 * [config.js](viewer/js/config.js)
