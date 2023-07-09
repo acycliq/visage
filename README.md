@@ -48,7 +48,7 @@ This will create a tree-like structure of nested directories under a folder name
              .
              .
 
-`tile_maker()` is a wrapper around `dzsave` of pyvips which depends on lipvips. You can install libvips from 
+`tile_maker()` is a wrapper around `dzsave` of pyvips which depends on libvips. You can install libvips from 
 [here](https://www.libvips.org/install.html). Because of licensing issues however, dzsave has been removed 
 in the precompiled windows binaries for version 8.14.2 of libvips. It might come back in the future, it looks better though,
 if you are on Windows, to download an older version, [v8.13.2](https://github.com/libvips/build-win64-mxe/releases/tag/v8.13.2) 
