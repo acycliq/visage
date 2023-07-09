@@ -15,12 +15,12 @@ The viewer is controlled by the following files:
 If you want to use your own data, read the comments therein to understand how to edit them to fit your needs.
 
 
-### The background image
+## The background image
 To add a background image you need to make a pyramid of tiles. One way to do this is to use `tile_maker()`:
     
     import pciSeq
 
-    pciSeq.tile_maker('path\to\background_image.tif'. z_depth=8)
+    pciSeq.tile_maker('path\to\background_image.tif', z_depth=8)
 
 This will create a tree-like structure of nested directories under a folder named `tiles` in your current directory. It will look like:
 
