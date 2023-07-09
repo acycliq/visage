@@ -73,5 +73,16 @@ In most cases, 8 zoom levels will be enough. If you have a large image, like ful
 might be better. Note that the resulting `tiles` folder, in terms of disk space will be quite big since the number of files grows 
 exponentially. If you really need 10 zoom levels, maybe generating the tiles directly in your final destination would make sense 
 in order avoid unnecessary IO operations. The total folder size could be above 4GB containing more than 900,000 small jpgs. Depending
-on your machine, creating a pyramid of tiles with 10 zoom levels will need more than an hour to finish.
+on your machine, creating a pyramid of tiles with 10 zoom levels will need more than an hour to finish. \
+In case you have access to some cloud storage facility (aws, gcs...) I think it is way better to store the tiles there, especially if that
+folder is really big.
 
+If you want to use two images as background and switch between them you have to tile the second image and update `layers` 
+in your `config.js` with the new entry:
+
+        "layers": {
+            "dapi": "/data/tiles/{z}/{y}/{x}.jpg",
+            "some_stain": "/data/stain_tiles/{z}/{y}/{x}.jpg"
+        },
+
+You will find then a control at the top right of the viewer with radio buttons to select your background. 
